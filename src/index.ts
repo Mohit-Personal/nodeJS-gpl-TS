@@ -5,6 +5,7 @@ import {buildSchema} from 'type-graphql'
 import { TodoResolver } from './resolvers/todoResolver';
 import {ApolloServerPluginLandingPageGraphQLPlayground} from "apollo-server-core"
 import  mongoose from "mongoose"
+var configData = require("./config/connection");
 
 const main = async() => {
     const schema = await buildSchema({
@@ -24,9 +25,9 @@ const main = async() => {
     server.applyMiddleware({app})
 
     // Connect to db
-    const dbURI = "mongodb+srv://mohit-mindstix:mindstix@todos.3f36mae.mongodb.net/?retryWrites=true&w=majority"
+    let connectionInfo = await configData.getConnectionInfo();
 
-    mongoose.connect(dbURI).then(() => {
+    mongoose.connect(connectionInfo.DATABASE_URL).then(() => {
         console.log("connected to db")
     }).catch((err) => {
         console.log(err)
