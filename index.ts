@@ -5,7 +5,7 @@ import {buildSchema} from 'type-graphql'
 import { TodoResolver } from './src/resolvers/todoResolver';
 import {ApolloServerPluginLandingPageGraphQLPlayground} from "apollo-server-core"
 import  mongoose from "mongoose"
-var configData = require("./config/connection");
+var configData = require("./src/config/connection");
 
 const main = async() => {
     const schema = await buildSchema({
@@ -35,6 +35,7 @@ const main = async() => {
 
     app.get("/", (req, res) => {
         res.send("<h1> Hello Welcome to Mindstix! </h1>"); // For single line text
+        console.log(req)
       });
 
     app.listen(8080, () => {
