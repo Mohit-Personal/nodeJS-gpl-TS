@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import {ApolloServer} from "apollo-server-express";
 import express from "express";
 import {buildSchema} from 'type-graphql'
-import { TodoResolver } from './resolvers/todoResolver';
+import { TodoResolver } from './src/resolvers/todoResolver';
 import {ApolloServerPluginLandingPageGraphQLPlayground} from "apollo-server-core"
 import  mongoose from "mongoose"
 var configData = require("./config/connection");
@@ -32,6 +32,10 @@ const main = async() => {
     }).catch((err) => {
         console.log(err)
     })
+
+    app.get("/", (req, res) => {
+        res.send("<h1> Hello Welcome to Mindstix! </h1>"); // For single line text
+      });
 
     app.listen(8080, () => {
         console.log('Server is running on http://localhost:8080/graphql')
