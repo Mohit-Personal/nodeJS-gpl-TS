@@ -33,8 +33,8 @@ const main = async() => {
         console.log(err)
     })
 
-    app.listen(4000, () => {
-        console.log('Server is running on http://localhost:4000/graphql')
+    app.listen(8080, () => {
+        console.log('Server is running on http://localhost:8080/graphql')
     })
 }
 
